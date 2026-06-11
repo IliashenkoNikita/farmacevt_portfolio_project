@@ -10,8 +10,16 @@ test("contact form submits and shows status", async ({ page }) => {
 });
 
 test("admin and cabinet buttons submit real actions", async ({ page }) => {
-  await page.goto("/uk/auth/sign-in");
-  await page.getByRole("button", { name: "Увійти" }).click();
+  await page.goto("/uk");
+  await page.context().addCookies([
+    {
+      name: "holos-session",
+      value: "admin@holos.example",
+      domain: "localhost",
+      path: "/",
+    },
+    { name: "holos-role", value: "ADMIN", domain: "localhost", path: "/" },
+  ]);
 
   await page.goto("/uk/admin/events");
   await page.getByRole("button", { name: "Save" }).click();
