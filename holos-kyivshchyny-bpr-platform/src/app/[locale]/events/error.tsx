@@ -2,8 +2,8 @@
 export default function ErrorPage() {
   return (
     <main className="container">
-      <h1>Не вдалося завантажити події</h1>
-      <p>Спробуйте оновити сторінку.</p>
+      <h1>�� ������� ����������� ��䳿</h1>
+      <p>��������� ������� �������.</p>
     </main>
   );
 }

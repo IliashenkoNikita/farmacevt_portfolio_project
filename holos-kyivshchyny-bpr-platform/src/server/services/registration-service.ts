@@ -3,7 +3,7 @@ const active = new Set<string>();
 export function createRegistration(input: unknown, sessionUserId: string) {
   const data = registrationSchema.parse(input);
   const key = sessionUserId + ":" + data.eventSlug;
-  if (active.has(key)) throw new Error("Ви вже зареєстровані на цю подію");
+  if (active.has(key)) throw new Error("�� ��� ����������� �� �� ����");
   active.add(key);
   return {
     id: "reg_" + Buffer.from(key).toString("base64url"),

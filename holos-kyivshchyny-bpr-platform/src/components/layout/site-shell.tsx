@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { signOutAction } from "@/server/actions/auth-actions";
+
 export function SiteShell({
   locale,
   children,
@@ -15,14 +16,16 @@ export function SiteShell({
     ["Кабінет", "cabinet"],
     ["Адмін", "admin"],
   ];
+
   return (
     <>
       <a className="skip-link" href="#main">
         Перейти до контенту
       </a>
       <header className="site-header">
-        <Link className="logo" href={"/" + locale}>
-          Голос Київщини
+        <Link className="logo" href={"/" + locale} aria-label="Голос Київщини">
+          <span aria-hidden="true">ГК</span>
+          <span>Голос Київщини</span>
         </Link>
         <nav aria-label="Головна навігація">
           {links.map(([label, href]) => (
@@ -37,7 +40,7 @@ export function SiteShell({
             await signOutAction(locale);
           }}
         >
-          <button className="text-sm font-semibold" type="submit">
+          <button className="header-action" type="submit">
             Вийти
           </button>
         </form>

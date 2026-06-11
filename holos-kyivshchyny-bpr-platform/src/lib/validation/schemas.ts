@@ -9,7 +9,7 @@ export const profileSchema = z.object({
   fullName: z.string().min(2),
   birthDate: z
     .string()
-    .refine((value) => !Number.isNaN(Date.parse(value)), "Невірна дата"),
+    .refine((value) => !Number.isNaN(Date.parse(value)), "������ ����"),
   email: emailSchema,
   phone: phoneSchema,
   education: z.string().min(2),

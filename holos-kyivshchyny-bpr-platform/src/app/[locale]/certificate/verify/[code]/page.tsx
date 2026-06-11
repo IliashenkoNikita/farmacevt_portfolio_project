@@ -13,15 +13,15 @@ export default async function VerifyPage({
   const data = publicVerification(record);
   return (
     <main id="main" className="container">
-      <h1>Перевірка сертифіката</h1>
+      <h1>�������� ����������</h1>
       <Card>
-        <p>Статус: {data.status}</p>
-        <p>Учасник: {data.participantFullName}</p>
-        <p>Подія: {data.eventTitle}</p>
-        <p>Дата події: {data.eventDate}</p>
-        <p>Бали БПР: {data.bprPoints}</p>
-        <p>Номер: {data.certificateNumber}</p>
-        <p>Дата видачі: {data.issueDate}</p>
+        <p>������: {data.status}</p>
+        <p>�������: {data.participantFullName}</p>
+        <p>����: {data.eventTitle}</p>
+        <p>���� ��䳿: {data.eventDate}</p>
+        <p>���� ���: {data.bprPoints}</p>
+        <p>�����: {data.certificateNumber}</p>
+        <p>���� ������: {data.issueDate}</p>
       </Card>
     </main>
   );

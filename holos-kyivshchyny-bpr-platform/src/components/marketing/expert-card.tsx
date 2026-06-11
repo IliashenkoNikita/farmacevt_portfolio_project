@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
+
 export function ExpertCard({
   expert,
   locale,
@@ -14,8 +15,14 @@ export function ExpertCard({
   locale: string;
 }) {
   return (
-    <Card>
-      <div className="mb-4 h-28 rounded-md bg-gradient-to-br from-emerald-100 to-sky-100" />
+    <Card className="card-interactive">
+      <div className="expert-mark" aria-hidden="true">
+        {expert.name
+          .split(" ")
+          .map((part) => part[0])
+          .join("")
+          .slice(0, 2)}
+      </div>
       <h3 className="text-xl font-bold">{expert.name}</h3>
       <p className="font-semibold text-emerald-800">{expert.position}</p>
       <p>{expert.specialization}</p>

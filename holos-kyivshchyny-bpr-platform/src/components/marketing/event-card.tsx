@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+
 export function EventCard({
   event,
   locale,
@@ -16,7 +17,7 @@ export function EventCard({
   locale: string;
 }) {
   return (
-    <Card>
+    <Card className="card-interactive">
       <Badge>{event.category}</Badge>
       <h3 className="mt-3 text-xl font-bold">{event.title}</h3>
       <p className="text-slate-600">

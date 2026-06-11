@@ -25,4 +25,6 @@ This repository is the production MVP for ТОВ «Незалежна інфор
 - Use `.agents/skills/security-hardening/SKILL.md` before changing auth, RBAC, uploads, exports, certificates, or public verification.
 - Use `.agents/skills/bpr-regulatory-check/SKILL.md` before changing BPR/CPD event, testing, attendance, or certificate behavior.
 - Use `.agents/skills/frontend-accessibility-polish/SKILL.md` before changing public or cabinet UI.
+- Use `.agents/skills/taste-redesign-existing-projects/SKILL.md` before frontend polish, redesign, motion, or UX review work.
+- Use `.agents/skills/frontend-nextjs-production/SKILL.md`, `.agents/skills/frontend-accessibility-wcag22/SKILL.md`, and `.agents/skills/gsap-react-next-animation/SKILL.md` alongside the taste skill when the change touches routes, accessibility, or animation.
 - Use `.agents/skills/documentation-delivery/SKILL.md` before closing client handoff work.

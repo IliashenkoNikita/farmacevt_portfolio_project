@@ -8,7 +8,7 @@ export default async function ExpertsPage({
   const { locale } = await params;
   return (
     <main id="main" className="container">
-      <h1>Експерти</h1>
+      <h1>��������</h1>
       <div className="grid-cards">
         {experts.map((expert) => (
           <ExpertCard key={expert.slug} expert={expert} locale={locale} />

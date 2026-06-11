@@ -19,7 +19,7 @@ export default async function ExpertPage({
         <p>{expert.position}</p>
         <p>{expert.specialization}</p>
         <p>{expert.bio}</p>
-        <h2>Проведені та майбутні події</h2>
+        <h2>�������� �� ������� ��䳿</h2>
         <ul>
           {conducted.map((event) => (
             <li key={event.slug}>{event.title}</li>

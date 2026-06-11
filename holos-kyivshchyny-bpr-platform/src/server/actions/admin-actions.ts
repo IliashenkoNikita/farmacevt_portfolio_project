@@ -10,7 +10,7 @@ export async function createAdminEventAction(): Promise<void> {
   const session = await requireSession();
   requirePermission(session.role, "event:write");
   writeAudit("EVENT_CREATE", session.userId, "Event", "demo-event", {
-    title: "Нова подія",
+    title: "���� ����",
   });
 }
 
@@ -19,9 +19,9 @@ export async function exportParticipantsAction(): Promise<void> {
   requirePermission(session.role, "export:write");
   const buffer = await participantsWorkbook([
     {
-      fullName: "Марія Петренко",
+      fullName: "���� ��������",
       email: "user1@holos.example",
-      eventTitle: "Фармаконагляд",
+      eventTitle: "�������������",
       status: "confirmed",
       points: 10,
     },

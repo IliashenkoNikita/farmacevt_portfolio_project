@@ -85,3 +85,10 @@ No external GitHub skill was vendored in this pass. The local project skills are
 | Phase 13 CI/scans          | `production-ci-cd-observability`, `security-secrets-supply-chain`, `frontend-performance-core-web-vitals`                                                | Prepared |
 | Phase 14 operations        | `production-ci-cd-observability`, `client-handoff-go-live`                                                                                               | Prepared |
 | Phase 15 handoff           | `client-handoff-go-live`, `bpr-regulatory-content-audit`, `frontend-accessibility-wcag22`, `frontend-performance-core-web-vitals`                        | Prepared |
+
+## 2026-06-11 Taste Frontend Review
+
+- Activated `.agents/skills/taste-redesign-existing-projects/SKILL.md` after reviewing `Leonxlnx/taste-skill` for a project-local, safer frontend audit workflow.
+- Paired it with `.agents/skills/frontend-nextjs-production/SKILL.md`, `.agents/skills/frontend-accessibility-polish/SKILL.md`, `.agents/skills/frontend-accessibility-wcag22/SKILL.md`, and `.agents/skills/gsap-react-next-animation/SKILL.md`.
+- Scope: public shell, home page, shared styling, demo content strings, branded fallback state, and future UI guidance.
+- Evidence: `docs/finalization/frontend-taste-audit.md`.

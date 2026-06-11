@@ -19,67 +19,67 @@ export default async function EventDetail({
       <div className="grid">
         <Card>
           <p>
-            {event.category} · {event.format} · {event.date}
+            {event.category} � {event.format} � {event.date}
           </p>
           <p>
-            {event.points} балів БПР · {event.hours} год · {event.price}
+            {event.points} ���� ��� � {event.hours} ��� � {event.price}
           </p>
-          <p>Спікер: {event.speaker.name}</p>
+          <p>�����: {event.speaker.name}</p>
           <p>{organizationalInfo}</p>
-          <h2>Програма</h2>
+          <h2>��������</h2>
           <ul>
-            <li>Нормативний контекст</li>
-            <li>Практичні кейси</li>
-            <li>Тестування та сертифікація</li>
+            <li>����������� ��������</li>
+            <li>�������� �����</li>
+            <li>���������� �� �����������</li>
           </ul>
         </Card>
         <Card>
-          <h2>Реєстрація</h2>
+          <h2>���������</h2>
           <form action={registerForEventAction} className="card-list">
             <input type="hidden" name="locale" value={locale} />
             <input type="hidden" name="eventSlug" value={event.slug} />
             <Input
               name="fullName"
-              placeholder="ПІБ"
-              defaultValue="Марія Петренко"
+              placeholder="ϲ�"
+              defaultValue="���� ��������"
             />
             <Input name="birthDate" type="date" defaultValue="1990-01-01" />
             <Input
               name="phone"
-              placeholder="Телефон"
+              placeholder="�������"
               defaultValue="+380501112233"
             />
             <Input
               name="education"
-              placeholder="Освіта"
-              defaultValue="Вища фармацевтична"
+              placeholder="�����"
+              defaultValue="���� �������������"
             />
             <Input
               name="specialty"
-              placeholder="Спеціальність"
-              defaultValue="Фармація"
+              placeholder="������������"
+              defaultValue="��������"
             />
             <Input
               name="organizationName"
-              placeholder="Організація"
-              defaultValue="Демо організація"
+              placeholder="����������"
+              defaultValue="���� ����������"
             />
             <Input
               name="position"
-              placeholder="Посада"
-              defaultValue="Фармацевт"
+              placeholder="������"
+              defaultValue="���������"
             />
-            <Input name="edrpou" placeholder="ЄДРПОУ" defaultValue="12345678" />
+            <Input name="edrpou" placeholder="������" defaultValue="12345678" />
             <Select name="channel">
               <option value="EMAIL">Email</option>
               <option value="SMS">SMS</option>
               <option value="VIBER">Viber</option>
             </Select>
             <label className="flex gap-2">
-              <Checkbox name="consent" required /> Даю згоду на обробку даних
+              <Checkbox name="consent" required /> ��� ����� �� ������� �����
             </label>
             <button className="primary-link" type="submit">
-              Зареєструватися
+              ��������������
             </button>
           </form>
         </Card>

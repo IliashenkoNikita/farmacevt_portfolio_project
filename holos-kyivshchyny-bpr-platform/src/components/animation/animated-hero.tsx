@@ -1,8 +1,11 @@
 "use client";
+
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+
 gsap.registerPlugin(useGSAP);
+
 export function AnimatedHero({
   title,
   slogan,
@@ -13,18 +16,21 @@ export function AnimatedHero({
   locale: string;
 }) {
   const scope = useRef<HTMLElement>(null);
+
   useGSAP(
     () => {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
       gsap.from("[data-hero]", {
-        y: 28,
-        duration: 0.8,
-        stagger: 0.12,
+        y: 24,
+        duration: 0.7,
+        stagger: 0.1,
         ease: "power3.out",
       });
     },
     { scope },
   );
+
   return (
     <section ref={scope} className="hero">
       <div className="hero-inner">
@@ -35,7 +41,7 @@ export function AnimatedHero({
         <p data-hero>{slogan}</p>
         <div data-hero className="actions">
           <a className="primary-link" href={"/" + locale + "/events"}>
-            Переглянути заходи
+            Переглянути події
           </a>
           <a className="secondary-link" href={"/" + locale + "/auth/sign-up"}>
             Зареєструватися

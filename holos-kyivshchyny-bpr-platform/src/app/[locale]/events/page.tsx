@@ -36,7 +36,7 @@ export default async function EventsPage({
 
   return (
     <main id="main" className="container">
-      <h1>Події та курси</h1>
+      <h1>��䳿 �� �����</h1>
       <EventFilters categories={categories} values={query} />
       <p className="text-sm text-slate-600" aria-live="polite">
         Showing {events.length} event{events.length === 1 ? "" : "s"}

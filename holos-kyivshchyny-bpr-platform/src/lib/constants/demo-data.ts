@@ -1,17 +1,20 @@
 export const demoDisclaimer =
   "Демо-версія. Дані та документи потребують юридичної перевірки перед production.";
+
 export const categories = [
   "Реєстрація ЛЗ",
   "GMP/GDP",
   "Медичні вироби",
   "Фармаконагляд",
 ] as const;
+
 export const experts = [
   {
     slug: "olena-melnyk",
     name: "Олена Мельник",
     position: "Керівниця напряму фармаконагляду",
-    specialization: "Фармаконагляд, безпека лікарських засобів",
+    specialization:
+      "Фармаконагляд, безпека лікарських засобів, аудит процесів",
     bio: "Понад 12 років практики у фармаконагляді, навчанні відповідальних осіб та аудиті процесів.",
   },
   {
@@ -36,8 +39,10 @@ export const experts = [
     bio: "Проводить тренінги з оцінки відповідності, документації та постмаркетингового нагляду.",
   },
 ] as const;
+
 export const organizationalInfo =
   "Подія відбуватиметься на платформі YouTube. У день проведення ви отримаєте персональне посилання на трансляцію. Нагадування з доступами email/SMS/Viber будуть надіслані за день до події та за 30 хвилин до старту. Запис події буде доступний протягом 30 днів. Сертифікат буде надіслано на вашу електронну пошту наступного дня після події.";
+
 export const providerDocuments = [
   "Положення про оцінку заходів БПР",
   "Методологія оцінювання набутих знань",
@@ -46,6 +51,11 @@ export const providerDocuments = [
   "Нормативна база БПР в Україні",
   "Підтвердження від регулятора МОЗ / ВФАР, якщо доступне",
 ] as const;
+
+const speakerBySlug = Object.fromEntries(
+  experts.map((expert) => [expert.slug, expert]),
+) as Record<(typeof experts)[number]["slug"], (typeof experts)[number]>;
+
 export const demoData = {
   users: [
     {
@@ -89,13 +99,7 @@ export const demoData = {
       date: "2026-07-18",
       points: 10,
       hours: 4,
-      speaker: {
-        slug: "olena-melnyk",
-        name: "Олена Мельник",
-        position: "Керівниця напряму фармаконагляду",
-        specialization: "Фармаконагляд, безпека лікарських засобів",
-        bio: "Понад 12 років практики у фармаконагляді, навчанні відповідальних осіб та аудиті процесів.",
-      },
+      speaker: speakerBySlug["olena-melnyk"],
       price: "1200 грн",
     },
     {
@@ -107,13 +111,7 @@ export const demoData = {
       date: "2026-08-02",
       points: 15,
       hours: 6,
-      speaker: {
-        slug: "andrii-koval",
-        name: "Андрій Коваль",
-        position: "Консультант GMP/GDP",
-        specialization: "GMP/GDP, внутрішні аудити, CAPA",
-        bio: "Допомагає фармацевтичним компаніям будувати якісні системи дистрибуції та виробництва.",
-      },
+      speaker: speakerBySlug["andrii-koval"],
       price: "2400 грн",
     },
     {
@@ -125,13 +123,7 @@ export const demoData = {
       date: "2026-09-11",
       points: 12,
       hours: 5,
-      speaker: {
-        slug: "iryna-shevchenko",
-        name: "Ірина Шевченко",
-        position: "Експертка з реєстрації ЛЗ",
-        specialization: "Реєстрація лікарських засобів",
-        bio: "Супроводжує регуляторні досьє, зміни та практичні навчання для реєстраційних команд.",
-      },
+      speaker: speakerBySlug["iryna-shevchenko"],
       price: "1200 грн",
     },
     {
@@ -143,13 +135,7 @@ export const demoData = {
       date: "2026-10-03",
       points: 8,
       hours: 3,
-      speaker: {
-        slug: "maksym-honchar",
-        name: "Максим Гончар",
-        position: "Фахівець з медичних виробів",
-        specialization: "Медичні вироби, технічні файли, відповідність",
-        bio: "Проводить тренінги з оцінки відповідності, документації та постмаркетингового нагляду.",
-      },
+      speaker: speakerBySlug["maksym-honchar"],
       price: "2400 грн",
     },
     {
@@ -161,13 +147,7 @@ export const demoData = {
       date: "2026-11-14",
       points: 10,
       hours: 4,
-      speaker: {
-        slug: "olena-melnyk",
-        name: "Олена Мельник",
-        position: "Керівниця напряму фармаконагляду",
-        specialization: "Фармаконагляд, безпека лікарських засобів",
-        bio: "Понад 12 років практики у фармаконагляді, навчанні відповідальних осіб та аудиті процесів.",
-      },
+      speaker: speakerBySlug["olena-melnyk"],
       price: "1200 грн",
     },
     {
@@ -179,13 +159,7 @@ export const demoData = {
       date: "2026-12-05",
       points: 9,
       hours: 4,
-      speaker: {
-        slug: "andrii-koval",
-        name: "Андрій Коваль",
-        position: "Консультант GMP/GDP",
-        specialization: "GMP/GDP, внутрішні аудити, CAPA",
-        bio: "Допомагає фармацевтичним компаніям будувати якісні системи дистрибуції та виробництва.",
-      },
+      speaker: speakerBySlug["andrii-koval"],
       price: "2400 грн",
     },
   ],
