@@ -1,16 +1,16 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { requirePermission } from "@/lib/auth/permissions";
 import { requireSession } from "@/lib/auth/session";
 import { writeAudit } from "@/server/services/audit-service";
 import { participantsWorkbook } from "@/server/services/export-service";
-import { redirect } from "next/navigation";
 
 export async function createAdminEventAction(): Promise<void> {
   const session = await requireSession();
   requirePermission(session.role, "event:write");
   writeAudit("EVENT_CREATE", session.userId, "Event", "demo-event", {
-    title: "���� ����",
+    title: "Нова подія",
   });
 }
 
@@ -19,9 +19,9 @@ export async function exportParticipantsAction(): Promise<void> {
   requirePermission(session.role, "export:write");
   const buffer = await participantsWorkbook([
     {
-      fullName: "���� ��������",
+      fullName: "Марія Петренко",
       email: "user1@holos.example",
-      eventTitle: "�������������",
+      eventTitle: "Фармаконагляд: практичні оновлення 2026",
       status: "confirmed",
       points: 10,
     },

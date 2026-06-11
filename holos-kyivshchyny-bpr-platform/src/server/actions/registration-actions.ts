@@ -1,11 +1,14 @@
 "use server";
+
 import { redirect } from "next/navigation";
 import { requireSession } from "@/lib/auth/session";
 import { createRegistration } from "@/server/services/registration-service";
+
 export async function registerForEventAction(formData: FormData) {
   const session = await requireSession();
   const locale = String(formData.get("locale") ?? "uk");
   const eventSlug = String(formData.get("eventSlug") ?? "");
+
   createRegistration(
     {
       eventSlug,
@@ -13,12 +16,12 @@ export async function registerForEventAction(formData: FormData) {
       birthDate: String(formData.get("birthDate") ?? "1990-01-01"),
       email: session.email,
       phone: String(formData.get("phone") ?? "+380501112233"),
-      education: String(formData.get("education") ?? "���� �������������"),
-      specialty: String(formData.get("specialty") ?? "��������"),
+      education: String(formData.get("education") ?? "Вища фармацевтична"),
+      specialty: String(formData.get("specialty") ?? "Фармація"),
       organizationName: String(
-        formData.get("organizationName") ?? "���� ����������",
+        formData.get("organizationName") ?? "ТОВ Медфарм",
       ),
-      position: String(formData.get("position") ?? "���������"),
+      position: String(formData.get("position") ?? "Фармацевт"),
       edrpou: String(formData.get("edrpou") ?? "12345678"),
       comment: String(formData.get("comment") ?? ""),
       consent: formData.get("consent") === "on",
@@ -26,5 +29,6 @@ export async function registerForEventAction(formData: FormData) {
     },
     session.userId,
   );
+
   redirect("/" + locale + "/cabinet/events?registered=" + eventSlug);
 }

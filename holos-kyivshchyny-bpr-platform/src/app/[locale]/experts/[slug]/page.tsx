@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { demoData, experts } from "@/lib/constants/demo-data";
+
 export default async function ExpertPage({
   params,
 }: {
@@ -12,6 +13,7 @@ export default async function ExpertPage({
   const conducted = demoData.events.filter(
     (event) => event.speaker.slug === slug,
   );
+
   return (
     <main id="main" className="container">
       <h1>{expert.name}</h1>
@@ -19,7 +21,7 @@ export default async function ExpertPage({
         <p>{expert.position}</p>
         <p>{expert.specialization}</p>
         <p>{expert.bio}</p>
-        <h2>�������� �� ������� ��䳿</h2>
+        <h2>Пов’язані навчальні події</h2>
         <ul>
           {conducted.map((event) => (
             <li key={event.slug}>{event.title}</li>

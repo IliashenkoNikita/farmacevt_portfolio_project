@@ -28,9 +28,9 @@ export default async function Home({
         <p className="disclaimer">{demoDisclaimer}</p>
         <h2>Платформа для професійного розвитку</h2>
         <p>
-          Семінари, вебінари, e-learning, тестування, БПР-бали,
-          сертифікати, матеріали та кабінет учасника для фахівців охорони
-          здоров’я, фармації, медичних виробів і GMP/GDP.
+          Семінари, вебінари, e-learning, тестування, БПР-бали, сертифікати,
+          матеріали та кабінет учасника для фахівців охорони здоров’я, фармації,
+          медичних виробів і GMP/GDP.
         </p>
         <div className="grid metric-grid">
           <AnimatedMetric value={demoData.events.length} label="подій у демо" />
@@ -79,8 +79,8 @@ export default async function Home({
         <Card className="card-interactive">
           <h2>Перевірка сертифіката</h2>
           <p>
-            Роботодавець або зовнішній перевіряючий бачить лише мінімальні
-            дані сертифіката.
+            Роботодавець або зовнішній перевіряючий бачить лише мінімальні дані
+            сертифіката.
           </p>
           <Link
             className="primary-link"

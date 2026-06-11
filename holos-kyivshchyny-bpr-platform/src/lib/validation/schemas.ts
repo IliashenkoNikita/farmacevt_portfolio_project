@@ -1,15 +1,19 @@
 import { z } from "zod";
+
 export const emailSchema = z.string().email();
+
 export const phoneSchema = z
   .string()
   .min(7)
   .transform((value) => value.replace(/[^+\d]/g, ""));
+
 export const edrpouSchema = z.string().regex(/^\d{8,10}$/);
+
 export const profileSchema = z.object({
   fullName: z.string().min(2),
   birthDate: z
     .string()
-    .refine((value) => !Number.isNaN(Date.parse(value)), "������ ����"),
+    .refine((value) => !Number.isNaN(Date.parse(value)), "Некоректна дата"),
   email: emailSchema,
   phone: phoneSchema,
   education: z.string().min(2),
@@ -22,6 +26,7 @@ export const profileSchema = z.object({
   licenseRenewalDate: z.string().optional(),
   consentDataProcessing: z.literal(true),
 });
+
 export const registrationSchema = z.object({
   eventSlug: z.string().min(1),
   fullName: z.string().min(2),
@@ -37,6 +42,7 @@ export const registrationSchema = z.object({
   consent: z.literal(true),
   channel: z.enum(["EMAIL", "SMS", "VIBER"]),
 });
+
 export const eventSchema = z.object({
   title: z.string().min(4),
   slug: z.string().min(3),
@@ -48,6 +54,7 @@ export const eventSchema = z.object({
   hours: z.number().positive(),
   price: z.string(),
 });
+
 export const testSubmissionSchema = z.object({
   attemptId: z.string().min(1),
   answers: z.array(

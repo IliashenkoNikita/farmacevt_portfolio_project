@@ -36,10 +36,10 @@ export default async function EventsPage({
 
   return (
     <main id="main" className="container">
-      <h1>��䳿 �� �����</h1>
+      <h1>Події та навчання</h1>
       <EventFilters categories={categories} values={query} />
       <p className="text-sm text-slate-600" aria-live="polite">
-        Showing {events.length} event{events.length === 1 ? "" : "s"}
+        Знайдено подій: {events.length}
       </p>
       <div className="grid-cards">
         {events.length ? (
@@ -47,7 +47,7 @@ export default async function EventsPage({
             <EventCard key={event.slug} event={event} locale={locale} />
           ))
         ) : (
-          <EmptyState title="No events match the selected filters" />
+          <EmptyState title="За вибраними фільтрами подій не знайдено" />
         )}
       </div>
       <Pagination page={1} totalPages={1} />
