@@ -1,0 +1,30 @@
+name: Performance
+on:
+  workflow_dispatch:
+    inputs:
+      staging_url:
+        description: Deployed URL to audit
+        required: false
+        type: string
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.staging_url != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 10.12.1 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - name: Lighthouse CI
+        env:
+          STAGING_URL: ${{ inputs.staging_url }}
+        run: |
+          pnpm lighthouse
+          pnpm dlx @lhci/cli@0.14.x autorun --collect.url="${STAGING_URL}" --assert.assertions.categories:performance=warn --assert.assertions.categories:accessibility=error --assert.assertions.categories:best-practices=error --assert.assertions.categories:seo=warn
+  skipped:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.staging_url == '' }}
+    steps:
+      - run: echo "No staging_url supplied; Lighthouse audit skipped."

@@ -1,0 +1,23 @@
+# Parent repository guardrails.
+# Prefer pushing `holos-kyivshchyny-bpr-platform` as its own private repo.
+elite-frontend-security-animation-skills/
+
+# Generated dependencies and build output across nested projects.
+**/node_modules/
+**/.next/
+**/coverage/
+**/playwright-report/
+**/test-results/
+**/uploads/
+**/.turbo/
+**/.cache/
+
+# Secrets.
+**/.env
+**/.env.*
+!**/.env.example
+
+# Logs and compiler artifacts.
+*.log
+*.tsbuildinfo
+.DS_Store

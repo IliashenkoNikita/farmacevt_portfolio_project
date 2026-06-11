@@ -1,0 +1,425 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+  SUPER_ADMIN
+  MANAGER
+  CONTENT_EDITOR
+  SUPPORT
+}
+
+enum EventFormat {
+  SEMINAR
+  WEBINAR
+  E_LEARNING
+  OFFLINE
+  ONLINE
+  HYBRID
+}
+
+enum EventStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum RegistrationStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  ATTENDED
+  NO_SHOW
+  COMPLETED
+}
+
+enum MaterialVisibility {
+  ADMIN_ONLY
+  REGISTERED_USERS
+  ATTENDED_USERS
+  CERTIFICATE_ELIGIBLE_USERS
+}
+
+enum QuestionType {
+  SINGLE_CHOICE
+  MULTIPLE_CHOICE
+  TRUE_FALSE
+}
+
+enum TestAttemptStatus {
+  STARTED
+  SUBMITTED
+  PASSED
+  FAILED
+}
+
+enum CertificateStatus {
+  ACTIVE
+  REVOKED
+}
+
+enum NotificationChannel {
+  EMAIL
+  SMS
+  VIBER
+}
+
+enum NotificationStatus {
+  SCHEDULED
+  SENT
+  FAILED
+  CANCELLED
+}
+
+enum AuditAction {
+  ADMIN_LOGIN
+  EVENT_CREATE
+  EVENT_UPDATE
+  EVENT_DELETE
+  SPEAKER_CREATE
+  SPEAKER_UPDATE
+  SPEAKER_DELETE
+  MATERIAL_UPLOAD
+  MATERIAL_DELETE
+  TEST_CREATE
+  TEST_UPDATE
+  TEST_PUBLISH
+  REGISTRATION_CREATE
+  REGISTRATION_UPDATE
+  ATTENDANCE_CHANGE
+  CERTIFICATE_GENERATE
+  CERTIFICATE_REVOKE
+  EXCEL_EXPORT
+  PROVIDER_DOCUMENT_UPLOAD
+  PROVIDER_DOCUMENT_PUBLISH
+  SETTINGS_CHANGE
+}
+
+model User {
+  id           String         @id @default(cuid())
+  email        String         @unique
+  passwordHash String?
+  name         String?
+  role         UserRole       @default(USER)
+  accounts     Account[]
+  sessions     Session[]
+  profile      Profile?
+  registrations Registration[]
+  attempts     TestAttempt[]
+  certificates Certificate[]
+  auditLogs    AuditLog[]
+  notifications Notification[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+}
+
+model Account {
+  id                String @id @default(cuid())
+  userId            String
+  provider          String
+  providerAccountId String
+  user              User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Profile {
+  id                    String                @id @default(cuid())
+  userId                String                @unique
+  fullName              String
+  birthDate             DateTime
+  phone                 String
+  education             String
+  specialty             String
+  workplace             String
+  position              String
+  organizationName      String?
+  edrpou                String?
+  preferredChannels     NotificationChannel[]
+  licenseRenewalDate    DateTime?
+  consentMarketing      Boolean               @default(false)
+  consentDataProcessing Boolean               @default(false)
+  user                  User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model EventCategory {
+  id     String  @id @default(cuid())
+  name   String  @unique
+  events Event[]
+}
+
+model Event {
+  id                            String       @id @default(cuid())
+  slug                          String       @unique
+  code                          String
+  title                         String
+  categoryId                    String
+  date                          DateTime
+  startTime                     String
+  endTime                       String?
+  format                        EventFormat
+  status                        EventStatus  @default(DRAFT)
+  location                      String
+  platform                      String?
+  streamUrl                     String?
+  accessInstructions            String?
+  bprPoints                     Int
+  hours                         Int
+  price                         String
+  bannerAssetId                 String?
+  bannerAlt                     String?
+  description                   String
+  program                       Json
+  organizationalInfo            String
+  materialAvailabilityDays      Int          @default(30)
+  certificateAvailableAt        DateTime?
+  requiresTest                  Boolean      @default(true)
+  requiresAttendance            Boolean      @default(true)
+  officialBprRegistrationNumber String?
+  officialSpecialties           String[]
+  providerVerified              Boolean      @default(false)
+  category                      EventCategory @relation(fields: [categoryId], references: [id])
+  speakers                      EventSpeaker[]
+  registrations                 Registration[]
+  materials                     Material[]
+  tests                         Test[]
+  certificates                  Certificate[]
+
+  @@index([date, categoryId, status])
+  @@index([status, date])
+  @@index([categoryId, date])
+}
+
+model Speaker {
+  id            String         @id @default(cuid())
+  slug          String         @unique
+  fullName      String
+  position      String
+  specialization String
+  bio           String
+  photoAssetId  String?
+  events        EventSpeaker[]
+}
+
+model EventSpeaker {
+  eventId   String
+  speakerId String
+  event     Event   @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  speaker   Speaker @relation(fields: [speakerId], references: [id], onDelete: Cascade)
+
+  @@id([eventId, speakerId])
+}
+
+model Registration {
+  id               String              @id @default(cuid())
+  userId           String
+  eventId          String
+  organizationName String
+  position         String
+  edrpou           String
+  comment          String?
+  channel          NotificationChannel @default(EMAIL)
+  status           RegistrationStatus  @default(PENDING)
+  user             User                @relation(fields: [userId], references: [id])
+  event            Event               @relation(fields: [eventId], references: [id])
+
+  @@unique([userId, eventId])
+  @@index([eventId, status])
+  @@index([userId, status])
+}
+
+model Material {
+  id          String             @id @default(cuid())
+  eventId     String
+  title       String
+  visibility  MaterialVisibility
+  expiresAt   DateTime?
+  fileAssetId String?
+  externalUrl String?
+  event       Event              @relation(fields: [eventId], references: [id])
+  fileAsset   FileAsset?         @relation(fields: [fileAssetId], references: [id])
+
+  @@index([eventId])
+  @@index([eventId, visibility])
+}
+
+model Test {
+  id                 String        @id @default(cuid())
+  eventId            String
+  title              String
+  description        String
+  passThreshold      Int
+  maxAttempts        Int
+  timeLimitMinutes   Int?
+  availableFrom      DateTime?
+  availableUntil     DateTime?
+  randomizeQuestions Boolean       @default(false)
+  randomizeOptions   Boolean       @default(false)
+  published          Boolean       @default(false)
+  event              Event         @relation(fields: [eventId], references: [id])
+  questions          Question[]
+  attempts           TestAttempt[]
+
+  @@index([eventId])
+}
+
+model Question {
+  id          String           @id @default(cuid())
+  testId      String
+  type        QuestionType
+  text        String
+  points      Int
+  explanation String?
+  test        Test             @relation(fields: [testId], references: [id], onDelete: Cascade)
+  options     QuestionOption[]
+}
+
+model QuestionOption {
+  id         String       @id @default(cuid())
+  questionId String
+  text       String
+  isCorrect  Boolean
+  question   Question     @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  answers    TestAnswer[]
+}
+
+model TestAttempt {
+  id            String            @id @default(cuid())
+  testId        String
+  userId        String
+  attemptNumber Int
+  status        TestAttemptStatus @default(STARTED)
+  startedAt     DateTime          @default(now())
+  submittedAt   DateTime?
+  score         Int               @default(0)
+  passed        Boolean           @default(false)
+  user          User              @relation(fields: [userId], references: [id])
+  test          Test              @relation(fields: [testId], references: [id])
+  answers       TestAnswer[]
+
+  @@index([userId, testId])
+}
+
+model TestAnswer {
+  id         String         @id @default(cuid())
+  attemptId  String
+  questionId String
+  optionId   String
+  attempt    TestAttempt    @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  option     QuestionOption @relation(fields: [optionId], references: [id])
+}
+
+model Certificate {
+  id                                 String                 @id @default(cuid())
+  userId                             String
+  eventId                            String
+  certificateNumber                  String                 @unique
+  verificationCode                   String                 @unique
+  status                             CertificateStatus      @default(ACTIVE)
+  issuedAt                           DateTime               @default(now())
+  revokedAt                          DateTime?
+  pdfAssetId                         String?
+  providerName                       String?
+  eventType                          String?
+  specialties                        String[]
+  officialBprEventRegistrationNumber String?
+  user                               User                   @relation(fields: [userId], references: [id])
+  event                              Event                  @relation(fields: [eventId], references: [id])
+  verification                       CertificateVerification?
+
+  @@unique([userId, eventId, status])
+  @@index([status, issuedAt])
+}
+
+model CertificateVerification {
+  id            String       @id @default(cuid())
+  certificateId String       @unique
+  viewedAt      DateTime?
+  certificate   Certificate  @relation(fields: [certificateId], references: [id], onDelete: Cascade)
+}
+
+model Notification {
+  id            String              @id @default(cuid())
+  userId        String?
+  eventId       String?
+  type          String
+  channel       NotificationChannel
+  status        NotificationStatus  @default(SCHEDULED)
+  scheduledAt   DateTime
+  sentAt        DateTime?
+  payload       Json
+  failureReason String?
+  user          User?               @relation(fields: [userId], references: [id])
+
+  @@index([scheduledAt, status])
+}
+
+model AuditLog {
+  id         String      @id @default(cuid())
+  actorId    String?
+  action     AuditAction
+  entityType String
+  entityId   String?
+  metadata   Json
+  actor      User?       @relation(fields: [actorId], references: [id])
+  createdAt  DateTime    @default(now())
+
+  @@index([actorId])
+  @@index([actorId, createdAt])
+  @@index([action, createdAt])
+}
+
+model ProviderDocument {
+  id          String     @id @default(cuid())
+  title       String
+  category    String
+  version     String
+  published   Boolean    @default(false)
+  verified    Boolean    @default(false)
+  fileAssetId String?
+  fileAsset   FileAsset? @relation(fields: [fileAssetId], references: [id])
+
+  @@index([published, category])
+  @@index([verified, category])
+}
+
+model FileAsset {
+  id                String             @id @default(cuid())
+  storageKey        String             @unique
+  originalName      String
+  mimeType          String
+  sizeBytes         Int
+  public            Boolean            @default(false)
+  checksum          String?
+  materials         Material[]
+  providerDocuments ProviderDocument[]
+}
+
+model AppSetting {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+}

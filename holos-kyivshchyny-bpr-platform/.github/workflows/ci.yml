@@ -1,0 +1,30 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 10.12.1 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm env:check
+        env:
+          DATABASE_URL: postgresql://user:pass@localhost:5432/holos
+          AUTH_SECRET: ci-auth-secret-minimum-32-characters
+          APP_URL: http://localhost:3000
+          NEXT_PUBLIC_APP_URL: http://localhost:3000
+          CERTIFICATE_SIGNING_SECRET: ci-certificate-secret-minimum-32
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm format
+      - run: pnpm prisma:validate
+        env:
+          DATABASE_URL: postgresql://user:pass@localhost:5432/holos
+      - run: pnpm test
+      - run: pnpm build
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:a11y
+      - run: pnpm test:e2e
