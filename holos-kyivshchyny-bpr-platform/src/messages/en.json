@@ -1,6 +1,99 @@
 {
-  "name": "Holos Kyivshchyny",
-  "owner": "Independent Information Company “Holos Kyivshchyny” LLC",
-  "slogan": "Professional education platform for pharmaceutical specialists.",
-  "disclaimer": "Demo version. Data and documents require legal review before production."
+  "brand": {
+    "short": "HK",
+    "name": "Holos Kyivshchyny",
+    "owner": "Independent Information Company “Holos Kyivshchyny” LLC",
+    "product": "Holos Kyivshchyny BPR"
+  },
+  "meta": {
+    "title": "Holos Kyivshchyny BPR",
+    "description": "A professional BPR/CPD education platform for healthcare, pharmaceutical, and medical-device specialists."
+  },
+  "nav": {
+    "events": "Events",
+    "experts": "Experts",
+    "bpr": "BPR",
+    "accreditation": "Accreditation",
+    "cabinet": "Cabinet",
+    "admin": "Admin"
+  },
+  "shell": {
+    "skip": "Skip to content",
+    "mainNav": "Primary navigation",
+    "languageLabel": "Language",
+    "signOut": "Sign out",
+    "footer": "© 2026 Holos Kyivshchyny · Demo version for production preparation",
+    "languageNames": {
+      "uk": "Українська",
+      "ru": "Русский",
+      "en": "English"
+    }
+  },
+  "common": {
+    "demoDisclaimer": "Demo version. Data and documents require legal review before production.",
+    "allEvents": "All events",
+    "team": "Team",
+    "middleDot": "·"
+  },
+  "home": {
+    "eyebrow": "BPR/CPD provider platform",
+    "slogan": "Professional education platform for pharmaceutical specialists.",
+    "primaryCta": "View events",
+    "secondaryCta": "Create account",
+    "leadTitle": "A platform for professional development",
+    "leadBody": "Seminars, webinars, e-learning, testing, BPR points, certificates, materials, and a participant cabinet for healthcare, pharmaceutical, medical-device, and GMP/GDP specialists.",
+    "metrics": {
+      "events": "demo events",
+      "experts": "experts",
+      "certificates": "certificates in registry"
+    },
+    "upcomingEvents": "Upcoming events",
+    "expertsTitle": "Experts",
+    "trustTitle": "BPR trust layer",
+    "trustBody": "Assessment, testing, certification, and BPR portfolio procedures are documented for legal review before production.",
+    "trustCta": "Learn about BPR",
+    "verifyTitle": "Certificate verification",
+    "verifyBody": "An employer or external reviewer sees only the minimum certificate data.",
+    "verifyCta": "Verify demo"
+  },
+  "auth": {
+    "signInTitle": "Sign in",
+    "signUpTitle": "Create account",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "submit": "Sign in",
+    "demoHint": "Demo: user1@holos.example, admin@holos.example, or superadmin@holos.example. Password: demo-password.",
+    "signUpBody": "User registration is wired through Better Auth. After production email is connected, this page should send verification and route the user to their personal cabinet."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The link may have changed, or the page may not be prepared for the production preview yet.",
+    "home": "Go home",
+    "events": "View events"
+  },
+  "accreditation": {
+    "title": "Provider accreditation and documents",
+    "documentBody": "This document describes the provider’s internal procedure, preparation rules, assessment process, and evidence retention for legal review. Final status and content must be confirmed by responsible owners before production launch."
+  },
+  "event": {
+    "speaker": "Speaker",
+    "points": "BPR points",
+    "hours": "h",
+    "program": "Program",
+    "programItems": [
+      "Review of current regulatory requirements",
+      "Practical cases and common mistakes",
+      "Testing and certificate issuance"
+    ],
+    "registration": "Registration",
+    "fullName": "Full name",
+    "phone": "Phone",
+    "education": "Education",
+    "specialty": "Specialty",
+    "organizationName": "Organization",
+    "position": "Position",
+    "edrpou": "EDRPOU",
+    "consent": "I consent to personal data processing",
+    "register": "Register"
+  }
 }

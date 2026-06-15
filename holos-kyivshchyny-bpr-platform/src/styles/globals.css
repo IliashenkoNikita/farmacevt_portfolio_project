@@ -130,6 +130,23 @@ a {
   font-weight: 800;
 }
 
+.language-switcher {
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.64);
+  padding: 0.16rem;
+}
+
+.language-switcher a {
+  font-size: 0.82rem;
+}
+
+.language-switcher a[aria-current="page"] {
+  background: var(--brand);
+  color: white;
+}
+
 .logo {
   display: inline-flex;
   align-items: center;
@@ -329,6 +346,18 @@ h2 {
 .card-list {
   display: grid;
   gap: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.field input {
+  color: var(--ink);
+  font-weight: 500;
 }
 
 .footer {

@@ -6,13 +6,13 @@ import { CertificatePreview } from "@/components/ui/certificate-preview";
 import { Card } from "@/components/ui/card";
 import { EventCard } from "@/components/marketing/event-card";
 import { ExpertCard } from "@/components/marketing/expert-card";
-import { demoDisclaimer, demoData, experts } from "@/lib/constants/demo-data";
-import { getMessages } from "@/lib/i18n/config";
+import { demoData, experts } from "@/lib/constants/demo-data";
+import { getMessages, localizePath, type Locale } from "@/lib/i18n/config";
 
 export default async function Home({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
   const messages = getMessages(locale);
@@ -20,29 +20,37 @@ export default async function Home({
   return (
     <main id="main">
       <AnimatedHero
-        title={messages.name}
-        slogan={messages.slogan}
+        title={messages.brand.name}
+        slogan={messages.home.slogan}
+        eyebrow={messages.home.eyebrow}
+        primaryLabel={messages.home.primaryCta}
+        secondaryLabel={messages.home.secondaryCta}
         locale={locale}
       />
       <section className="container section-lead">
-        <p className="disclaimer">{demoDisclaimer}</p>
-        <h2>Платформа для професійного розвитку</h2>
-        <p>
-          Семінари, вебінари, e-learning, тестування, БПР-бали, сертифікати,
-          матеріали та кабінет учасника для фахівців охорони здоров’я, фармації,
-          медичних виробів і GMP/GDP.
-        </p>
+        <p className="disclaimer">{messages.common.demoDisclaimer}</p>
+        <h2>{messages.home.leadTitle}</h2>
+        <p>{messages.home.leadBody}</p>
         <div className="grid metric-grid">
-          <AnimatedMetric value={demoData.events.length} label="подій у демо" />
-          <AnimatedMetric value={experts.length} label="експерти" />
-          <AnimatedMetric value={2} label="сертифікати у реєстрі" />
+          <AnimatedMetric
+            value={demoData.events.length}
+            label={messages.home.metrics.events}
+          />
+          <AnimatedMetric
+            value={experts.length}
+            label={messages.home.metrics.experts}
+          />
+          <AnimatedMetric
+            value={2}
+            label={messages.home.metrics.certificates}
+          />
         </div>
       </section>
       <section className="container">
         <div className="section-heading">
-          <h2>Найближчі події</h2>
-          <Link className="text-link" href={"/" + locale + "/events"}>
-            Усі події
+          <h2>{messages.home.upcomingEvents}</h2>
+          <Link className="text-link" href={localizePath(locale, "events")}>
+            {messages.common.allEvents}
           </Link>
         </div>
         <StaggerCards>
@@ -53,9 +61,9 @@ export default async function Home({
       </section>
       <section className="container">
         <div className="section-heading">
-          <h2>Експерти</h2>
-          <Link className="text-link" href={"/" + locale + "/experts"}>
-            Команда
+          <h2>{messages.home.expertsTitle}</h2>
+          <Link className="text-link" href={localizePath(locale, "experts")}>
+            {messages.common.team}
           </Link>
         </div>
         <StaggerCards>
@@ -66,29 +74,24 @@ export default async function Home({
       </section>
       <section className="container grid">
         <Card className="card-interactive">
-          <h2>Довіра БПР</h2>
-          <p>
-            Процедури оцінювання, тестування, сертифікації та портфоліо БПР
-            задокументовані для юридичної перевірки перед production.
-          </p>
-          <Link className="primary-link" href={"/" + locale + "/bpr"}>
-            Дізнатися про БПР
+          <h2>{messages.home.trustTitle}</h2>
+          <p>{messages.home.trustBody}</p>
+          <Link className="primary-link" href={localizePath(locale, "bpr")}>
+            {messages.home.trustCta}
           </Link>
         </Card>
         <CertificatePreview />
         <Card className="card-interactive">
-          <h2>Перевірка сертифіката</h2>
-          <p>
-            Роботодавець або зовнішній перевіряючий бачить лише мінімальні дані
-            сертифіката.
-          </p>
+          <h2>{messages.home.verifyTitle}</h2>
+          <p>{messages.home.verifyBody}</p>
           <Link
             className="primary-link"
-            href={
-              "/" + locale + "/certificate/verify/verify_demo_active_8YK4mP"
-            }
+            href={localizePath(
+              locale,
+              "certificate/verify/verify_demo_active_8YK4mP",
+            )}
           >
-            Перевірити демо
+            {messages.home.verifyCta}
           </Link>
         </Card>
       </section>

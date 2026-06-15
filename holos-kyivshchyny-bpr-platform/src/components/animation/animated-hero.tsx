@@ -9,10 +9,16 @@ gsap.registerPlugin(useGSAP);
 export function AnimatedHero({
   title,
   slogan,
+  eyebrow,
+  primaryLabel,
+  secondaryLabel,
   locale,
 }: {
   title: string;
   slogan: string;
+  eyebrow: string;
+  primaryLabel: string;
+  secondaryLabel: string;
   locale: string;
 }) {
   const scope = useRef<HTMLElement>(null);
@@ -35,16 +41,16 @@ export function AnimatedHero({
     <section ref={scope} className="hero">
       <div className="hero-inner">
         <p data-hero className="eyebrow">
-          BPR/CPD provider platform
+          {eyebrow}
         </p>
         <h1 data-hero>{title}</h1>
         <p data-hero>{slogan}</p>
         <div data-hero className="actions">
           <a className="primary-link" href={"/" + locale + "/events"}>
-            Переглянути події
+            {primaryLabel}
           </a>
           <a className="secondary-link" href={"/" + locale + "/auth/sign-up"}>
-            Зареєструватися
+            {secondaryLabel}
           </a>
         </div>
       </div>

@@ -1,5 +1,11 @@
 import Link from "next/link";
 import { signOutAction } from "@/server/actions/auth-actions";
+import {
+  getLocaleOrDefault,
+  getMessages,
+  locales,
+  localizePath,
+} from "@/lib/i18n/config";
 
 export function SiteShell({
   locale,
@@ -8,47 +14,65 @@ export function SiteShell({
   locale: string;
   children: React.ReactNode;
 }) {
+  const activeLocale = getLocaleOrDefault(locale);
+  const messages = getMessages(activeLocale);
   const links = [
-    ["Події", "events"],
-    ["Експерти", "experts"],
-    ["БПР", "bpr"],
-    ["Акредитація", "accreditation"],
-    ["Кабінет", "cabinet"],
-    ["Адмін", "admin"],
-  ];
+    [messages.nav.events, "events"],
+    [messages.nav.experts, "experts"],
+    [messages.nav.bpr, "bpr"],
+    [messages.nav.accreditation, "accreditation"],
+    [messages.nav.cabinet, "cabinet"],
+    [messages.nav.admin, "admin"],
+  ] as const;
 
   return (
     <>
       <a className="skip-link" href="#main">
-        Перейти до контенту
+        {messages.shell.skip}
       </a>
       <header className="site-header">
-        <Link className="logo" href={"/" + locale} aria-label="Голос Київщини">
-          <span aria-hidden="true">ГК</span>
-          <span>Голос Київщини</span>
+        <Link
+          className="logo"
+          href={localizePath(activeLocale)}
+          aria-label={messages.brand.name}
+        >
+          <span aria-hidden="true">{messages.brand.short}</span>
+          <span>{messages.brand.name}</span>
         </Link>
-        <nav aria-label="Головна навігація">
+        <nav aria-label={messages.shell.mainNav}>
           {links.map(([label, href]) => (
-            <Link key={href} href={"/" + locale + "/" + href}>
+            <Link key={href} href={localizePath(activeLocale, href)}>
               {label}
+            </Link>
+          ))}
+        </nav>
+        <nav
+          className="language-switcher"
+          aria-label={messages.shell.languageLabel}
+        >
+          {locales.map((item) => (
+            <Link
+              key={item}
+              href={localizePath(item)}
+              aria-current={item === activeLocale ? "page" : undefined}
+            >
+              {messages.shell.languageNames[item]}
             </Link>
           ))}
         </nav>
         <form
           action={async () => {
             "use server";
-            await signOutAction(locale);
+            await signOutAction(activeLocale);
           }}
         >
           <button className="header-action" type="submit">
-            Вийти
+            {messages.shell.signOut}
           </button>
         </form>
       </header>
       {children}
-      <footer className="footer">
-        © 2026 Голос Київщини · Демо-версія для production-підготовки
-      </footer>
+      <footer className="footer">{messages.shell.footer}</footer>
     </>
   );
 }

@@ -1,18 +1,13 @@
-type PrismaModule = {
-  PrismaClient: new () => unknown;
-};
+import { PrismaClient } from "@prisma/client";
 
-const globalForPrisma = globalThis as unknown as { prisma?: unknown };
+const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
+
+export const prisma = globalForPrisma.prisma ?? new PrismaClient();
+
+if (process.env.NODE_ENV !== "production") {
+  globalForPrisma.prisma = prisma;
+}
 
 export async function getPrismaClient() {
-  if (globalForPrisma.prisma) return globalForPrisma.prisma;
-
-  const mod = (await import("@prisma/client")) as unknown as PrismaModule;
-  const client = new mod.PrismaClient();
-
-  if (process.env.NODE_ENV !== "production") {
-    globalForPrisma.prisma = client;
-  }
-
-  return client;
+  return prisma;
 }

@@ -92,3 +92,12 @@ No external GitHub skill was vendored in this pass. The local project skills are
 - Paired it with `.agents/skills/frontend-nextjs-production/SKILL.md`, `.agents/skills/frontend-accessibility-polish/SKILL.md`, `.agents/skills/frontend-accessibility-wcag22/SKILL.md`, and `.agents/skills/gsap-react-next-animation/SKILL.md`.
 - Scope: public shell, home page, shared styling, demo content strings, branded fallback state, and future UI guidance.
 - Evidence: `docs/finalization/frontend-taste-audit.md`.
+
+## 2026-06-15 Production UI And I18n Pass
+
+- Activated `.agents/skills/frontend-nextjs-production/SKILL.md` for App Router routing, metadata, locale handling, and production route quality.
+- Activated `.agents/skills/frontend-accessibility-wcag22/SKILL.md` for language attributes, labels, focus-safe navigation, and WCAG-oriented UI checks.
+- Activated `.agents/skills/taste-redesign-existing-projects/SKILL.md` for client-facing polish, animation restraint, layout density, and interface quality.
+- Activated `.agents/skills/auth-production-session-rbac/SKILL.md` because the pass touched sign-in and sign-up surfaces.
+- Scope: locale dictionaries, root language redirect, localized metadata, localized site shell, language switcher, home page, sign-in/sign-up, 404, accreditation, and event detail copy.
+- Evidence: `docs/finalization/top-tier-web-audit.md`.

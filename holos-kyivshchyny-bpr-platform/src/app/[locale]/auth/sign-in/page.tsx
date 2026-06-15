@@ -1,25 +1,43 @@
 import { signInAction } from "@/server/actions/auth-actions";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
+import { getMessages, type Locale } from "@/lib/i18n/config";
+
 export default async function SignInPage({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
+  const messages = getMessages(locale);
+
   return (
-    <main id="main" className="container">
-      <h1>Вхід</h1>
+    <main id="main" className="container auth-page">
+      <h1>{messages.auth.signInTitle}</h1>
       <Card>
         <form action={signInAction} className="card-list">
           <input type="hidden" name="locale" value={locale} />
-          <Input name="email" type="email" defaultValue="user1@holos.example" />
-          <Input name="password" type="password" defaultValue="demo-password" />
+          <label className="field">
+            <span>{messages.auth.emailLabel}</span>
+            <Input
+              name="email"
+              type="email"
+              defaultValue="user1@holos.example"
+            />
+          </label>
+          <label className="field">
+            <span>{messages.auth.passwordLabel}</span>
+            <Input
+              name="password"
+              type="password"
+              defaultValue="demo-password"
+            />
+          </label>
           <button className="primary-link" type="submit">
-            Увійти
+            {messages.auth.submit}
           </button>
         </form>
-        <p>Демо: admin@holos.example або superadmin@holos.example</p>
+        <p>{messages.auth.demoHint}</p>
       </Card>
     </main>
   );
