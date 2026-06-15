@@ -1,19 +1,27 @@
 import { AdminDemoActionForm } from "@/components/demo/action-forms";
 import { Card } from "@/components/ui/card";
 import { FileUpload } from "@/components/ui/file-upload";
+import { getMessages, type Locale } from "@/lib/i18n/config";
 
-export default function Page() {
+export default async function EventsAdminPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  const messages = getMessages(locale);
+  const copy = messages.admin.pages.events;
+
   return (
     <>
-      <h1>Events</h1>
+      <h1>{copy.title}</h1>
       <Card>
-        <p>
-          Create, edit, publish, duplicate, archive, and manage event content.
-        </p>
-        <FileUpload />
+        <p>{copy.body}</p>
+        <FileUpload label={messages.upload.file} />
         <AdminDemoActionForm
           intent="events-save"
-          redirectTo="/uk/admin/events"
+          label={copy.action}
+          redirectTo={"/" + locale + "/admin/events"}
         />
       </Card>
     </>

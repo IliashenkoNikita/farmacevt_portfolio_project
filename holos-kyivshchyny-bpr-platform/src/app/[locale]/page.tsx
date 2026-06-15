@@ -80,7 +80,10 @@ export default async function Home({
             {messages.home.trustCta}
           </Link>
         </Card>
-        <CertificatePreview />
+        <CertificatePreview
+          label={messages.common.certificatePreview.label}
+          qrAlt={messages.common.certificatePreview.qrAlt}
+        />
         <Card className="card-interactive">
           <h2>{messages.home.verifyTitle}</h2>
           <p>{messages.home.verifyBody}</p>

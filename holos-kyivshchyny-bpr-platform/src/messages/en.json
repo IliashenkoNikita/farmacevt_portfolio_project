@@ -32,7 +32,16 @@
     "demoDisclaimer": "Demo version. Data and documents require legal review before production.",
     "allEvents": "All events",
     "team": "Team",
-    "middleDot": "·"
+    "middleDot": "·",
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "certificatePreview": {
+      "label": "Certificate",
+      "qrAlt": "QR code preview"
+    }
   },
   "home": {
     "eyebrow": "BPR/CPD provider platform",
@@ -90,18 +99,152 @@
   "admin": {
     "title": "Admin panel",
     "navTitle": "Admin",
+    "exportParticipants": "Export participants",
     "contentTitle": "Content",
     "contentBody": "Create and update events, speakers, materials, tests, certificates, and provider documents.",
     "reviewContent": "Review content",
     "reportsTitle": "Reports",
-    "reportsBody": "Export participants and compliance evidence for operations."
+    "reportsBody": "Export participants and compliance evidence for operations.",
+    "navigation": {
+      "events": "Events",
+      "speakers": "Speakers",
+      "materials": "Materials",
+      "tests": "Tests",
+      "registrations": "Registrations",
+      "certificates": "Certificates",
+      "exports": "Exports",
+      "auditLog": "Audit log",
+      "providerDocuments": "Provider documents"
+    },
+    "pages": {
+      "auditLog": {
+        "title": "Audit log",
+        "body": "Review administrative events and export audit evidence for compliance.",
+        "action": "Export audit log"
+      },
+      "certificates": {
+        "title": "Certificates",
+        "body": "Generate, download, revoke, and verify BPR/CPD certificates.",
+        "action": "Save"
+      },
+      "events": {
+        "title": "Events",
+        "body": "Create, edit, publish, duplicate, archive, and manage event content.",
+        "action": "Save"
+      },
+      "newEvent": {
+        "title": "New event",
+        "body": "Create a new BPR/CPD event with program, speaker, materials, and testing settings.",
+        "action": "Create event"
+      },
+      "editEvent": {
+        "title": "Edit event",
+        "body": "Edit event details, program, publication status, materials, tests, and certificate settings.",
+        "action": "Save event"
+      },
+      "exports": {
+        "title": "Exports",
+        "body": "Export participants, registrations, certificates, test results, and BPR portfolio reports."
+      },
+      "materials": {
+        "title": "Materials",
+        "body": "Upload learning files and set access by registration, attendance, or certificate eligibility.",
+        "action": "Save"
+      },
+      "providerDocuments": {
+        "title": "Provider documents",
+        "body": "Upload and publish provider documents after legal approval.",
+        "action": "Save"
+      },
+      "registrations": {
+        "title": "Registrations",
+        "body": "Review registrations, update statuses, mark attendance, and prepare reminders.",
+        "action": "Save"
+      },
+      "speakers": {
+        "title": "Speakers",
+        "body": "Manage speaker photos, position, biography, specialization, and events.",
+        "action": "Save"
+      },
+      "newSpeaker": {
+        "title": "New speaker",
+        "body": "Create a speaker profile with biography, position, specialization, and photo.",
+        "action": "Create speaker"
+      },
+      "editSpeaker": {
+        "title": "Edit speaker",
+        "body": "Update speaker profile content and related events.",
+        "action": "Save speaker"
+      },
+      "tests": {
+        "title": "Tests",
+        "body": "Create test questions, publish attempts, configure thresholds, and review results.",
+        "action": "Save"
+      },
+      "newTest": {
+        "title": "New test",
+        "body": "Create questions, answers, pass threshold, attempt limits, and availability window.",
+        "action": "Create test"
+      },
+      "editTest": {
+        "title": "Edit test",
+        "body": "Update questions, answer keys, pass threshold, and publication state.",
+        "action": "Save test"
+      }
+    }
   },
   "cabinet": {
     "title": "Cabinet",
     "nextEvent": "Next event",
     "bprPoints": "BPR points",
     "certificates": "Certificates",
-    "body": "The cabinet brings participant events, materials, certificates, and BPR portfolio into one workspace."
+    "body": "The cabinet brings participant events, materials, certificates, and BPR portfolio into one workspace.",
+    "navigation": {
+      "profile": "Profile",
+      "events": "Events",
+      "materials": "Materials",
+      "tests": "Tests",
+      "certificates": "Certificates",
+      "bprPortfolio": "BPR portfolio",
+      "licenseReminders": "Reminders"
+    },
+    "pages": {
+      "bprPortfolio": {
+        "title": "BPR portfolio",
+        "body": "Review accumulated BPR/CPD points and certificate history.",
+        "action": "Refresh portfolio"
+      },
+      "certificates": {
+        "title": "Certificates",
+        "body": "Review issued certificates and download the current PDF copy.",
+        "action": "Download PDF"
+      },
+      "events": {
+        "title": "My events",
+        "body": "Track registered events and access instructions.",
+        "action": "Refresh events"
+      },
+      "licenseReminders": {
+        "title": "License reminders",
+        "body": "Configure reminders for license renewal and BPR portfolio review.",
+        "action": "Save reminder"
+      },
+      "materials": {
+        "title": "Materials",
+        "body": "Open presentations, recordings, and learning files available for your events.",
+        "action": "Open materials"
+      },
+      "profile": {
+        "title": "Profile",
+        "body": "Update personal data used for event registration and certificates.",
+        "action": "Save profile"
+      },
+      "tests": {
+        "title": "Tests",
+        "body": "Start available tests and review previous results.",
+        "action": "Start test"
+      }
+    }
   },
   "certificate": {
     "verifyTitle": "Certificate verification",
@@ -115,6 +258,22 @@
   },
   "upload": {
     "file": "Upload file"
+  },
+  "contacts": {
+    "title": "Contacts",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "addressValue": "Kyiv, Ukraine",
+    "workingHours": "Working hours",
+    "workingHoursValue": "Mon-Fri 09:00-18:00",
+    "socialNetworks": "Social networks",
+    "map": "Map",
+    "emailPlaceholder": "Your email",
+    "messagePlaceholder": "Message",
+    "send": "Send",
+    "sent": "Message sent.",
+    "invalid": "Enter a valid email and message."
   },
   "auth": {
     "signInTitle": "Sign in",

@@ -1,6 +1,6 @@
 import {
   AdminDemoActionForm,
-  AdminExportActionForm,
+  AdminExportActionButton,
 } from "@/components/demo/action-forms";
 import { Card } from "@/components/ui/card";
 import { getMessages, type Locale } from "@/lib/i18n/config";
@@ -29,7 +29,10 @@ export default async function AdminPage({
         <Card>
           <h2>{messages.admin.reportsTitle}</h2>
           <p>{messages.admin.reportsBody}</p>
-          <AdminExportActionForm redirectTo={"/" + locale + "/admin"} />
+          <AdminExportActionButton
+            label={messages.admin.exportParticipants}
+            redirectTo={"/" + locale + "/admin"}
+          />
         </Card>
       </div>
     </>

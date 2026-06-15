@@ -1,17 +1,27 @@
 import { AdminDemoActionForm } from "@/components/demo/action-forms";
 import { Card } from "@/components/ui/card";
 import { FileUpload } from "@/components/ui/file-upload";
+import { getMessages, type Locale } from "@/lib/i18n/config";
 
-export default function Page() {
+export default async function ProviderDocumentsPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  const messages = getMessages(locale);
+  const copy = messages.admin.pages.providerDocuments;
+
   return (
     <>
-      <h1>Provider Documents</h1>
+      <h1>{copy.title}</h1>
       <Card>
-        <p>Upload and publish provider documents after legal approval.</p>
-        <FileUpload />
+        <p>{copy.body}</p>
+        <FileUpload label={messages.upload.file} />
         <AdminDemoActionForm
           intent="provider-documents-save"
-          redirectTo="/uk/admin/provider-documents"
+          label={copy.action}
+          redirectTo={"/" + locale + "/admin/provider-documents"}
         />
       </Card>
     </>

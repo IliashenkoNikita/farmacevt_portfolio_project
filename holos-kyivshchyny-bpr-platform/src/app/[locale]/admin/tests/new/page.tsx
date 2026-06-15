@@ -1,19 +1,24 @@
 import { AdminDemoActionForm } from "@/components/demo/action-forms";
 import { Card } from "@/components/ui/card";
+import { getMessages, type Locale } from "@/lib/i18n/config";
 
-export default function Page() {
+export default async function NewTestPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  const copy = getMessages(locale).admin.pages.newTest;
+
   return (
     <>
-      <h1>New Test</h1>
+      <h1>{copy.title}</h1>
       <Card>
-        <p>
-          Create questions, answers, pass threshold, attempt limits, and
-          availability window.
-        </p>
+        <p>{copy.body}</p>
         <AdminDemoActionForm
           intent="test-create"
-          label="Create test"
-          redirectTo="/uk/admin/tests/new"
+          label={copy.action}
+          redirectTo={"/" + locale + "/admin/tests/new"}
         />
       </Card>
     </>

@@ -1,20 +1,26 @@
 export function Pagination({
   page = 1,
   totalPages = 1,
+  labels,
 }: {
   page?: number;
   totalPages?: number;
+  labels: {
+    label: string;
+    previous: string;
+    next: string;
+  };
 }) {
   const previousDisabled = page <= 1;
   const nextDisabled = page >= totalPages;
   return (
-    <nav aria-label="Pagination" className="flex gap-2">
+    <nav aria-label={labels.label} className="flex gap-2">
       <button
         className="rounded border px-3 py-2 disabled:opacity-50"
         disabled={previousDisabled}
         type="button"
       >
-        Previous
+        {labels.previous}
       </button>
       <span className="px-3 py-2">
         {page} / {totalPages}
@@ -24,7 +30,7 @@ export function Pagination({
         disabled={nextDisabled}
         type="button"
       >
-        Next
+        {labels.next}
       </button>
     </nav>
   );

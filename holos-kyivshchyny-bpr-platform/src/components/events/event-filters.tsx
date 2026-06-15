@@ -52,8 +52,9 @@ export function EventFilters({
     if (value) next.set(name, value);
     else next.delete(name);
     next.delete("page");
+    const nextQuery = next.toString();
     startTransition(() => {
-      router.replace(next.size ? `${pathname}?${next.toString()}` : pathname, {
+      router.replace(nextQuery ? `${pathname}?${nextQuery}` : pathname, {
         scroll: false,
       });
     });

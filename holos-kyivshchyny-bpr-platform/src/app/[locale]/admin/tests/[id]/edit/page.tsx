@@ -1,18 +1,24 @@
 import { AdminDemoActionForm } from "@/components/demo/action-forms";
 import { Card } from "@/components/ui/card";
+import { getMessages, type Locale } from "@/lib/i18n/config";
 
-export default function Page() {
+export default async function EditTestPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  const copy = getMessages(locale).admin.pages.editTest;
+
   return (
     <>
-      <h1>Edit Test</h1>
+      <h1>{copy.title}</h1>
       <Card>
-        <p>
-          Update questions, answer keys, pass threshold, and publication state.
-        </p>
+        <p>{copy.body}</p>
         <AdminDemoActionForm
           intent="test-edit"
-          label="Save test"
-          redirectTo="/uk/admin/tests/demo/edit"
+          label={copy.action}
+          redirectTo={"/" + locale + "/admin/tests/demo/edit"}
         />
       </Card>
     </>

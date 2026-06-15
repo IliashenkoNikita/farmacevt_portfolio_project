@@ -56,7 +56,7 @@ export default async function EventsPage({
           <EmptyState title={messages.events.empty} />
         )}
       </div>
-      <Pagination page={1} totalPages={1} />
+      <Pagination page={1} totalPages={1} labels={messages.common.pagination} />
     </main>
   );
 }

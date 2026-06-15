@@ -1,9 +1,9 @@
 export function AdminDemoActionForm({
-  label = "Save",
+  label,
   intent,
   redirectTo,
 }: {
-  label?: string;
+  label: string;
   intent: string;
   redirectTo: string;
 }) {
@@ -17,12 +17,18 @@ export function AdminDemoActionForm({
   );
 }
 
-export function AdminExportActionForm({ redirectTo }: { redirectTo: string }) {
+export function AdminExportActionButton({
+  redirectTo,
+  label,
+}: {
+  redirectTo: string;
+  label: string;
+}) {
   return (
     <form action={redirectTo} className="mt-4" method="get">
       <input name="exported" type="hidden" value="participants" />
       <button className="primary-link" type="submit">
-        Export participants
+        {label}
       </button>
     </form>
   );

@@ -1,19 +1,24 @@
 import { CabinetDemoActionForm } from "@/components/demo/action-forms";
 import { Card } from "@/components/ui/card";
+import { getMessages, type Locale } from "@/lib/i18n/config";
 
-export default function Page() {
+export default async function CabinetMaterialsPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  const copy = getMessages(locale).cabinet.pages.materials;
+
   return (
     <>
-      <h1>Materials</h1>
+      <h1>{copy.title}</h1>
       <Card>
-        <p>
-          Open presentations, recordings, and learning files available for your
-          events.
-        </p>
+        <p>{copy.body}</p>
         <CabinetDemoActionForm
           intent="materials-open"
-          label="Open materials"
-          redirectTo="/uk/cabinet/materials"
+          label={copy.action}
+          redirectTo={"/" + locale + "/cabinet/materials"}
         />
       </Card>
     </>

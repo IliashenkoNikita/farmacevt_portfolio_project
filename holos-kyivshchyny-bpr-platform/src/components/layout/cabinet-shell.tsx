@@ -2,14 +2,14 @@ import Link from "next/link";
 import { getMessages } from "@/lib/i18n/config";
 
 const links = [
-  "profile",
-  "events",
-  "materials",
-  "tests",
-  "certificates",
-  "bpr-portfolio",
-  "license-reminders",
-];
+  ["profile", "profile"],
+  ["events", "events"],
+  ["materials", "materials"],
+  ["tests", "tests"],
+  ["certificates", "certificates"],
+  ["bpr-portfolio", "bprPortfolio"],
+  ["license-reminders", "licenseReminders"],
+] as const;
 
 export function CabinetShell({
   locale,
@@ -24,9 +24,9 @@ export function CabinetShell({
     <main id="main" className="admin-grid">
       <aside className="sidebar">
         <h2>{messages.cabinet.title}</h2>
-        {links.map((link) => (
-          <Link key={link} href={"/" + locale + "/cabinet/" + link}>
-            {link}
+        {links.map(([slug, labelKey]) => (
+          <Link key={slug} href={"/" + locale + "/cabinet/" + slug}>
+            {messages.cabinet.navigation[labelKey]}
           </Link>
         ))}
       </aside>
