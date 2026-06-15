@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
+import { getMessages } from "@/lib/i18n/config";
 
 export function ExpertCard({
   expert,
@@ -14,6 +15,8 @@ export function ExpertCard({
   };
   locale: string;
 }) {
+  const messages = getMessages(locale);
+
   return (
     <Card className="card-interactive">
       <div className="expert-mark" aria-hidden="true">
@@ -31,7 +34,7 @@ export function ExpertCard({
         className="font-semibold text-emerald-800"
         href={"/" + locale + "/experts/" + expert.slug}
       >
-        Профіль
+        {messages.experts.profile}
       </Link>
     </Card>
   );

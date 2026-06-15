@@ -5,9 +5,21 @@ import { useEffect, useMemo, useState, useTransition } from "react";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 
+type EventFiltersLabels = {
+  aria: string;
+  search: string;
+  allCategories: string;
+  allFormats: string;
+  pointsFrom: string;
+  reset: string;
+  updating: string;
+  ready: string;
+};
+
 type EventFiltersProps = {
   categories: readonly string[];
   values: Record<string, string | undefined>;
+  labels: EventFiltersLabels;
 };
 
 const formats = [
@@ -19,7 +31,11 @@ const formats = [
   "HYBRID",
 ];
 
-export function EventFilters({ categories, values }: EventFiltersProps) {
+export function EventFilters({
+  categories,
+  values,
+  labels,
+}: EventFiltersProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -49,10 +65,10 @@ export function EventFilters({ categories, values }: EventFiltersProps) {
   }, [query]);
 
   return (
-    <form className="grid" role="search" aria-label="Event filters">
+    <form className="grid" role="search" aria-label={labels.aria}>
       <Input
         name="q"
-        placeholder="Search by title"
+        placeholder={labels.search}
         value={query}
         onChange={(event) => setQuery(event.target.value)}
       />
@@ -61,7 +77,7 @@ export function EventFilters({ categories, values }: EventFiltersProps) {
         value={values.category ?? ""}
         onChange={(event) => updateParam("category", event.target.value)}
       >
-        <option value="">All categories</option>
+        <option value="">{labels.allCategories}</option>
         {categories.map((item) => (
           <option key={item} value={item}>
             {item}
@@ -73,7 +89,7 @@ export function EventFilters({ categories, values }: EventFiltersProps) {
         value={values.format ?? ""}
         onChange={(event) => updateParam("format", event.target.value)}
       >
-        <option value="">All formats</option>
+        <option value="">{labels.allFormats}</option>
         {formats.map((item) => (
           <option key={item} value={item}>
             {item.replace("_", "-")}
@@ -90,15 +106,15 @@ export function EventFilters({ categories, values }: EventFiltersProps) {
         type="number"
         min={0}
         name="points"
-        placeholder="BPR points from"
+        placeholder={labels.pointsFrom}
         value={values.points ?? ""}
         onChange={(event) => updateParam("points", event.target.value)}
       />
       <a className="secondary-link text-center" href={pathname}>
-        Reset filters
+        {labels.reset}
       </a>
       <span className="text-sm text-slate-600" aria-live="polite">
-        {isPending ? "Updating filters..." : "Filters ready"}
+        {isPending ? labels.updating : labels.ready}
       </span>
     </form>
   );

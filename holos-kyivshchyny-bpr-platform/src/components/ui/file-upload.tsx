@@ -1,4 +1,5 @@
 import { Input } from "./input";
-export function FileUpload() {
-  return <Input type="file" aria-label="Завантажити файл" />;
+
+export function FileUpload({ label = "Upload file" }: { label?: string }) {
+  return <Input type="file" aria-label={label} />;
 }

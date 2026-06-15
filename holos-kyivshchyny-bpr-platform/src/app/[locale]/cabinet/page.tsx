@@ -1,18 +1,23 @@
 import { StatCard } from "@/components/ui/stat-card";
+import { getMessages, type Locale } from "@/lib/i18n/config";
 
-export default function CabinetPage() {
+export default async function CabinetPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  const messages = getMessages(locale);
+
   return (
     <>
-      <h1>Кабінет</h1>
+      <h1>{messages.cabinet.title}</h1>
       <div className="grid">
-        <StatCard label="Найближча подія" value="18.07" />
-        <StatCard label="Бали БПР" value="10" />
-        <StatCard label="Сертифікати" value="1" />
+        <StatCard label={messages.cabinet.nextEvent} value="18.07" />
+        <StatCard label={messages.cabinet.bprPoints} value="10" />
+        <StatCard label={messages.cabinet.certificates} value="1" />
       </div>
-      <p>
-        Кабінет об’єднує події, матеріали, сертифікати та портфоліо БПР учасника
-        в одному робочому просторі.
-      </p>
+      <p>{messages.cabinet.body}</p>
     </>
   );
 }

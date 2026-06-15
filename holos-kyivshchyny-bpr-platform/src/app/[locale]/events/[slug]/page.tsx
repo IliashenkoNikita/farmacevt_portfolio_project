@@ -50,7 +50,7 @@ export default async function EventDetail({
             <Input
               name="fullName"
               placeholder={messages.event.fullName}
-              defaultValue="Марія Петренко"
+              defaultValue={messages.event.demoDefaults.fullName}
             />
             <Input name="birthDate" type="date" defaultValue="1990-01-01" />
             <Input
@@ -61,22 +61,22 @@ export default async function EventDetail({
             <Input
               name="education"
               placeholder={messages.event.education}
-              defaultValue="Вища фармацевтична"
+              defaultValue={messages.event.demoDefaults.education}
             />
             <Input
               name="specialty"
               placeholder={messages.event.specialty}
-              defaultValue="Фармація"
+              defaultValue={messages.event.demoDefaults.specialty}
             />
             <Input
               name="organizationName"
               placeholder={messages.event.organizationName}
-              defaultValue="ТОВ Медфарм"
+              defaultValue={messages.event.demoDefaults.organizationName}
             />
             <Input
               name="position"
               placeholder={messages.event.position}
-              defaultValue="Фармацевт"
+              defaultValue={messages.event.demoDefaults.position}
             />
             <Input
               name="edrpou"

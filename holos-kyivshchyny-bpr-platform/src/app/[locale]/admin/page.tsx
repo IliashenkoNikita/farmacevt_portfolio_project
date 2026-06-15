@@ -3,28 +3,33 @@ import {
   AdminExportActionForm,
 } from "@/components/demo/action-forms";
 import { Card } from "@/components/ui/card";
+import { getMessages, type Locale } from "@/lib/i18n/config";
 
-export default function Page() {
+export default async function AdminPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  const messages = getMessages(locale);
+
   return (
     <>
-      <h1>Адмін-панель</h1>
+      <h1>{messages.admin.title}</h1>
       <div className="grid-cards">
         <Card>
-          <h2>Content</h2>
-          <p>
-            Create and update events, speakers, materials, tests, certificates,
-            and provider documents.
-          </p>
+          <h2>{messages.admin.contentTitle}</h2>
+          <p>{messages.admin.contentBody}</p>
           <AdminDemoActionForm
             intent="admin-content-review"
-            label="Review content"
-            redirectTo="/uk/admin"
+            label={messages.admin.reviewContent}
+            redirectTo={"/" + locale + "/admin"}
           />
         </Card>
         <Card>
-          <h2>Reports</h2>
-          <p>Export participants and compliance evidence for operations.</p>
-          <AdminExportActionForm redirectTo="/uk/admin" />
+          <h2>{messages.admin.reportsTitle}</h2>
+          <p>{messages.admin.reportsBody}</p>
+          <AdminExportActionForm redirectTo={"/" + locale + "/admin"} />
         </Card>
       </div>
     </>

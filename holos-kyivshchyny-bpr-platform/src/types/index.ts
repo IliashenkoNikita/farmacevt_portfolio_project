@@ -1,4 +1,4 @@
-export type Locale = "uk" | "ru" | "en";
+export type Locale = "uk" | "en";
 export type Role =
   | "USER"
   | "ADMIN"

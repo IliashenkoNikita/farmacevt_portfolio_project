@@ -20,7 +20,7 @@ Date: 2026-06-15
 
 - Locale routing now has a validated locale list, default locale, language detection for the root route, typed dictionaries, and reusable localized path generation.
 - Metadata now comes from the active locale dictionary instead of a single hard-coded language.
-- Public shell copy, navigation labels, footer text, hero copy, core CTAs, sign-in, sign-up, 404, accreditation, and event detail labels are localized for `uk`, `ru`, and `en`.
+- Public shell copy, navigation labels, footer text, hero copy, core CTAs, sign-in, sign-up, 404, accreditation, and event detail labels are localized for `uk` and `en`.
 - The shell includes a language switcher with `aria-current`, accessible labels, and mobile-safe wrapping.
 - Sign-in fields now have visible labels instead of relying only on implicit input purpose.
 - Accreditation body copy was moved out of hard-coded page text to prevent the broken replacement-character issue seen in the browser.

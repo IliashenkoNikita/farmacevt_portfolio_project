@@ -25,7 +25,6 @@
     "footer": "© 2026 Holos Kyivshchyny · Demo version for production preparation",
     "languageNames": {
       "uk": "Українська",
-      "ru": "Русский",
       "en": "English"
     }
   },
@@ -55,6 +54,67 @@
     "verifyTitle": "Certificate verification",
     "verifyBody": "An employer or external reviewer sees only the minimum certificate data.",
     "verifyCta": "Verify demo"
+  },
+  "about": {
+    "title": "About the platform",
+    "body": "The platform’s mission is to support professional development for pharmaceutical, medical-device, and quality-system specialists through educational events, testing, materials, and transparent certification."
+  },
+  "bpr": {
+    "title": "BPR/CPD",
+    "body": "This page explains the continuing professional development flow: educational events, testing, point accrual, certificates, and participant portfolios. Before production launch, the legal team must confirm that the wording meets current requirements."
+  },
+  "events": {
+    "title": "Events and training",
+    "found": "Events found",
+    "empty": "No events match the selected filters",
+    "details": "Details",
+    "points": "BPR points",
+    "filters": {
+      "aria": "Event filters",
+      "search": "Search by title",
+      "allCategories": "All categories",
+      "allFormats": "All formats",
+      "pointsFrom": "BPR points from",
+      "reset": "Reset filters",
+      "updating": "Updating filters...",
+      "ready": "Filters ready"
+    },
+    "errorTitle": "Could not load events",
+    "errorBody": "Try refreshing the page or come back later."
+  },
+  "experts": {
+    "title": "Experts",
+    "profile": "Profile",
+    "relatedEvents": "Related training events"
+  },
+  "admin": {
+    "title": "Admin panel",
+    "navTitle": "Admin",
+    "contentTitle": "Content",
+    "contentBody": "Create and update events, speakers, materials, tests, certificates, and provider documents.",
+    "reviewContent": "Review content",
+    "reportsTitle": "Reports",
+    "reportsBody": "Export participants and compliance evidence for operations."
+  },
+  "cabinet": {
+    "title": "Cabinet",
+    "nextEvent": "Next event",
+    "bprPoints": "BPR points",
+    "certificates": "Certificates",
+    "body": "The cabinet brings participant events, materials, certificates, and BPR portfolio into one workspace."
+  },
+  "certificate": {
+    "verifyTitle": "Certificate verification",
+    "status": "Status",
+    "participant": "Participant",
+    "event": "Event",
+    "eventDate": "Event date",
+    "points": "BPR points",
+    "number": "Number",
+    "issueDate": "Issue date"
+  },
+  "upload": {
+    "file": "Upload file"
   },
   "auth": {
     "signInTitle": "Sign in",
@@ -94,6 +154,13 @@
     "position": "Position",
     "edrpou": "EDRPOU",
     "consent": "I consent to personal data processing",
-    "register": "Register"
+    "register": "Register",
+    "demoDefaults": {
+      "fullName": "Maria Petrenko",
+      "education": "Higher pharmaceutical education",
+      "specialty": "Pharmacy",
+      "organizationName": "Medpharm LLC",
+      "position": "Pharmacist"
+    }
   }
 }

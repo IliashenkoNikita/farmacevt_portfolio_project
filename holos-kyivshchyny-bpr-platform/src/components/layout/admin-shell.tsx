@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { getMessages } from "@/lib/i18n/config";
+
 const links = [
   "events",
   "speakers",
@@ -10,6 +12,7 @@ const links = [
   "audit-log",
   "provider-documents",
 ];
+
 export function AdminShell({
   locale,
   children,
@@ -17,10 +20,12 @@ export function AdminShell({
   locale: string;
   children: React.ReactNode;
 }) {
+  const messages = getMessages(locale);
+
   return (
     <main id="main" className="admin-grid">
       <aside className="sidebar">
-        <h2>Адмін</h2>
+        <h2>{messages.admin.navTitle}</h2>
         {links.map((link) => (
           <Link key={link} href={"/" + locale + "/admin/" + link}>
             {link}

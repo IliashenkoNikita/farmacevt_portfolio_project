@@ -3,15 +3,17 @@ import { EventCard } from "@/components/marketing/event-card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { Pagination } from "@/components/ui/pagination";
 import { categories, demoData } from "@/lib/constants/demo-data";
+import { getMessages, type Locale } from "@/lib/i18n/config";
 
 export default async function EventsPage({
   params,
   searchParams,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: Locale }>;
   searchParams: Promise<Record<string, string | undefined>>;
 }) {
   const { locale } = await params;
+  const messages = getMessages(locale);
   const query = await searchParams;
   const minimumPoints = Number(query.points ?? "0");
   const events = demoData.events.filter((event) => {
@@ -36,10 +38,14 @@ export default async function EventsPage({
 
   return (
     <main id="main" className="container">
-      <h1>Події та навчання</h1>
-      <EventFilters categories={categories} values={query} />
+      <h1>{messages.events.title}</h1>
+      <EventFilters
+        categories={categories}
+        values={query}
+        labels={messages.events.filters}
+      />
       <p className="text-sm text-slate-600" aria-live="polite">
-        Знайдено подій: {events.length}
+        {messages.events.found}: {events.length}
       </p>
       <div className="grid-cards">
         {events.length ? (
@@ -47,7 +53,7 @@ export default async function EventsPage({
             <EventCard key={event.slug} event={event} locale={locale} />
           ))
         ) : (
-          <EmptyState title="За вибраними фільтрами подій не знайдено" />
+          <EmptyState title={messages.events.empty} />
         )}
       </div>
       <Pagination page={1} totalPages={1} />

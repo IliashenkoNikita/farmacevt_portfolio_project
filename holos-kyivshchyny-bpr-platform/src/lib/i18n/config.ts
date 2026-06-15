@@ -1,15 +1,13 @@
 import uk from "@/messages/uk.json";
-import ru from "@/messages/ru.json";
 import en from "@/messages/en.json";
 
-export const locales = ["uk", "ru", "en"] as const;
+export const locales = ["uk", "en"] as const;
 export type Locale = (typeof locales)[number];
 
 export const defaultLocale: Locale = "uk";
 
 const dictionaries = {
   uk,
-  ru,
   en,
 } as const;
 
