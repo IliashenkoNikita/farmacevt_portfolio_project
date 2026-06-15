@@ -24,7 +24,6 @@ COPY . .
 # only used during image build and is replaced by runtime environment variables.
 ENV DATABASE_URL="postgresql://user:pass@localhost:5432/holos_bpr"
 
-RUN pnpm prisma generate
 RUN pnpm build
 
 FROM node:24-alpine AS runner

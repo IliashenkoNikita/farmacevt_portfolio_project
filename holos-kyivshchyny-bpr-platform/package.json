@@ -6,8 +6,9 @@
   "packageManager": "pnpm@10.12.1",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
+    "postinstall": "prisma generate",
     "lint": "tsx tools/check-finished.ts",
     "typecheck": "tsc --noEmit",
     "format": "prettier --check .",
@@ -15,6 +16,7 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "test:a11y": "playwright test tests/e2e/accessibility-home.spec.ts",
+    "prisma:generate": "prisma generate",
     "prisma:validate": "prisma validate",
     "env:check": "tsx tools/env-check.ts",
     "security:scan": "pnpm audit --audit-level high && pnpm lint",
